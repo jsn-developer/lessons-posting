@@ -1,0 +1,32 @@
+{
+    "name": "Posting App",
+
+    "dockerComposeFile": "docker-compose.yml",
+    "service": "web",
+    "workspaceFolder": "/work",
+
+    "runArgs": [],
+
+    "settings": {
+        "java.home": "/opt/java/openjdk",
+        "terminal.integrated.shell.linux": "/bin/sh",
+        "files.insertFinalNewline": true,
+        "files.trimFinalNewlines": true,
+        "editor.tabSize": 4,
+        "java.saveActions.organizeImports": true,
+        "tomcat.workspace": "/opt/tomcat"
+    },
+
+    "extensions": [
+        // Java Language Support
+        // "georgewfraser.vscode-javac",
+        // Java Extension Pack
+        "vscjava.vscode-java-pack",
+        // XML
+        "dotjoshjohnson.xml",
+        // Lombok Plugin
+        "gabrielbb.vscode-lombok",
+        // Tomcat Plugin
+        "adashen.vscode-tomcat"
+    ]
+}

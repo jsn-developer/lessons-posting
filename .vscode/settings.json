@@ -1,0 +1,13 @@
+{
+    "java.format.settings.url": "eclipse-formatter.xml",
+    // "java.testMethod": ["mvn", "test", "-Dtest=${class}#${method}"],
+    // "java.testClass": ["mvn", "test", "-Dtest=${class}"],
+    // "java.debugTestMethod": ["mvn", "test", "-Dmaven.surefire.debug", "-Dtest=${class}#${method}"],
+    "java.test.config": {
+        "name": "maven tests",
+        "workingDirectory": "${workspaceFolder}",
+        "args": ["-c", "jp.co.solxyz.posting"],
+        "vmargs": ["-Xmx512M"],
+        "env": {}
+    }
+}
