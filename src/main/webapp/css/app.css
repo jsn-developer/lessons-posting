@@ -1,0 +1,89 @@
+body {
+  background-color: #e3e3e3;
+}
+
+nav.bg-light {
+  background-color: transparent !important;
+  border-bottom: solid 3px #aaaaaa;
+}
+
+div.item {
+  padding-top: 0.8em;
+  padding-left: 0.8em;
+  padding-right: 0.8em;
+  width: 100%;
+}
+
+div.item div.view {
+  border-radius: 2px;
+  border: none;
+  -webkit-box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+          box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+
+div.item div.view:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+div.item div.view .content {
+  position: absolute;
+  top: 1em;
+  left: 1em;
+  bottom: 1em;
+  right: 1em;
+}
+
+div.item div.view h2 {
+  width: calc(100% - 0.8em);
+  height: 25%;
+  position: absolute;
+  bottom: 0;
+  background-color: gray;
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-top: 0;
+  padding-left: 0.5em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.center {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.input-fields .row {
+  margin-top: 2em;
+}
+/*# sourceMappingURL=app.css.map */
