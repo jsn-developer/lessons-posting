@@ -19,7 +19,7 @@ public class ImageServlet extends HttpServlet{
 
     private PostService postService;
 
-    public ImageServlet() {
+    public ImageServlet() throws Exception {
         this.postService = new PostService();
     }
 
@@ -36,7 +36,7 @@ public class ImageServlet extends HttpServlet{
         resp.setContentType(image.getMime());
 
         resp.getOutputStream().write(image.getImage());
-        
+
     }
-    
+
 }

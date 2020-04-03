@@ -1,6 +1,8 @@
 package jp.co.solxyz.lessons.posting;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -8,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import jp.co.solxyz.lessons.posting.business.PostService;
+import jp.co.solxyz.lessons.posting.entity.PostEntity;
 
 public class ListServlet extends HttpServlet {
 
@@ -23,7 +26,7 @@ public class ListServlet extends HttpServlet {
 
 	private PostService postService;
 
-	public ListServlet() {
+	public ListServlet() throws Exception {
 		this.postService = new PostService();
 	}
 
@@ -31,7 +34,16 @@ public class ListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		// 投稿データの取得
-		var list = postService.getPosts();
+		List<PostEntity> list = new ArrayList<PostEntity>();
+		try {
+			list = postService.getPosts();
+
+			req.setAttribute("list", list);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+			// TODO redirect to error page.
+		}
 
 		req.setAttribute("list", list);
 

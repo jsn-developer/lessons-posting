@@ -1,19 +1,21 @@
 package jp.co.solxyz.lessons.posting;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 
 import jp.co.solxyz.lessons.posting.business.PostService;
 import jp.co.solxyz.lessons.posting.entity.PostEntity;
 
 @MultipartConfig(location = "/tmp", maxFileSize = 1048476)
-public class PostServlet extends HttpServlet{
-	
+public class PostServlet extends HttpServlet {
+
 	private static final String PATH = "/WEB-INF/jsp/post.jsp";
 
 	/** Serial UID */
@@ -22,26 +24,60 @@ public class PostServlet extends HttpServlet{
 	/** サービス */
 	private PostService postService;
 
-	public PostServlet() {
+	public PostServlet() throws Exception {
 		this.postService = new PostService();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		
+
 		req.getRequestDispatcher(PATH).forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		var part = req.getPart("file");
+		// var item = new ServletFileUpload
 
-		PostEntity entity = PostEntity.builder()
-			.build();
+		var part = req.getPart("photo");
+		var photoBytes = part.getInputStream().readAllBytes();
+		var filename = getNameBy(part).orElse("empty name");
 
-		this.postService.post(entity);
-		
+		var content = req.getParameter("content");
+
+		PostEntity entity = PostEntity.builder().title(filename).content(content).photo(photoBytes).build();
+
+		try {
+			int result = this.postService.post(entity);
+			System.out.println("Result is "  + result);
+		} catch (Exception e) {
+			e.printStackTrace();
+			//TODO redirect to error page.
+		}
+
 		resp.sendRedirect("list");
+	}
+
+	/**
+	 * Part情報からファイル名を取得
+	 * @param part
+	 * @return
+	 */
+	private Optional<String> getNameBy(Part part) {
+
+		String name = null;
+
+		return Optional.of(part.getSubmittedFileName());
+
+//		for(String disp: part.getHeader("Content-Disposition").split(";")) {
+//			if(disp.trim().startsWith("name")) {
+//				name = disp.substring(disp.indexOf("=") + 1).replace("\"", "")
+//						.trim()
+//						.substring(name.lastIndexOf("\\"));
+//
+//			}
+//		}
+//
+//		return Optional.of(name);
 	}
 }

@@ -1,9 +1,9 @@
 package jp.co.solxyz.lessons.posting.business;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import jp.co.solxyz.lessons.posting.dao.PostDataDao;
 import jp.co.solxyz.lessons.posting.entity.ImageEntity;
 import jp.co.solxyz.lessons.posting.entity.PostEntity;
 
@@ -15,11 +15,15 @@ import jp.co.solxyz.lessons.posting.entity.PostEntity;
  */
 public class PostService {
 
+	private PostDataDao dao;
 
-	public List<PostEntity> getPosts() {
+	public PostService() throws Exception{
+		this.dao = new PostDataDao();
+	}
 
-		List<PostEntity> retList = new ArrayList<PostEntity>();
+	public List<PostEntity> getPosts() throws Exception {
 
+		List<PostEntity> retList = dao.getAll();
 		return retList;
 	}
 
@@ -28,17 +32,17 @@ public class PostService {
 		return null;
 	}
 
-	public int post(PostEntity entity) {
+	public int post(PostEntity entity) throws Exception{
 
-		return 0;
-	} 
+		return this.dao.insert(entity);
+	}
+
 
 	public Optional<ImageEntity> getImage(String postId) {
 
 		try{
-			int id = Integer.parseInt(postId);
 
-			return Optional.of(null);
+			return this.dao.getImage(postId);
 
 		} catch(NumberFormatException e) {
 			return Optional.empty();

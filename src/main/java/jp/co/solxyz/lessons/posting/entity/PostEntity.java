@@ -27,6 +27,16 @@ public class PostEntity {
 	private String content;
 
 	/**
+	 * 画像データ
+	 */
+	private byte[] photo;
+
+	/**
+	 * Mime/Type
+	 */
+	private String mime;
+
+	/**
 	 * タグ
 	 */
 	private String tags;
