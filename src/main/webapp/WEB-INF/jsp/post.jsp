@@ -14,7 +14,7 @@
     <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light">
         <a class="navbar-brand" href="#">投稿一覧</a>
     </nav>
-    <form action="post" method="post" enctype="multipart/form-data">
+    <form id="myForm" action="post" method="post" enctype="multipart/form-data">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-3 offset-md-1">
@@ -43,6 +43,7 @@
 <script>
 
 $(function(){
+	// 写真が選択されたら画像の内容を表示する
     $("#photo").on("change", function(e) {
 
         e.stopPropagation();
@@ -79,6 +80,16 @@ $(function(){
     });
 
     // refere to https://qiita.com/espeon196/items/3e50733ed8ca9d3c93f4
+
+    // 画像が選択されていなかったら送信できなくする
+    $("#myForm").submit(function(){
+    	if (!$("#photo").val()) {
+			// ファイルが選択されていない場合
+			alert("画像を選択してください。");
+			// return falseとすることでsubmitをキャンセルできる
+			return false;
+    	}
+    });
 
 });
 

@@ -1,8 +1,15 @@
 # Eclipse
-.classpath
-.project
+.metadata
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
 .settings/
-.factorypath
+.loadpath
+.recommenders
 
 # Intellij
 .idea/
