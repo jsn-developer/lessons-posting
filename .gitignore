@@ -7,7 +7,8 @@ tmp/
 *.swp
 *~.nib
 local.properties
-.settings/
+.settings/*
+!.settings/org.eclipse.wst.common.component
 .loadpath
 .recommenders
 
