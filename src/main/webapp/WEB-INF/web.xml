@@ -4,39 +4,4 @@
 	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd"
 	id="WebApp_ID" version="2.4">
 	<display-name>Posting App</display-name>
-
-	<servlet>
-		<servlet-name>ListServlet</servlet-name>
-		<servlet-class>jp.co.solxyz.lessons.posting.ListServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>PostServlet</servlet-name>
-		<servlet-class>jp.co.solxyz.lessons.posting.PostServlet</servlet-class>
-	</servlet>
-	<servlet>
-		<servlet-name>ImageServlet</servlet-name>
-		<servlet-class>jp.co.solxyz.lessons.posting.ImageServlet</servlet-class>
-	</servlet>
-
-	<jsp-config>
-		<jsp-property-group>
-			<url-pattern>*.jsp</url-pattern>
-			<page-encoding>UTF-8</page-encoding>
-		</jsp-property-group>
-	</jsp-config>
-
-	<servlet-mapping>
-		<servlet-name>ListServlet</servlet-name>
-		<url-pattern>/list</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>PostServlet</servlet-name>
-		<url-pattern>/post</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>ImageServlet</servlet-name>
-		<url-pattern>/image</url-pattern>
-	</servlet-mapping>
-
-
 </web-app>

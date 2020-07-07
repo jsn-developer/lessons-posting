@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +13,12 @@ import javax.servlet.http.HttpServletResponse;
 import jp.co.solxyz.lessons.posting.business.PostService;
 import jp.co.solxyz.lessons.posting.entity.PostEntity;
 
+/**
+ * 一覧のサーブレット
+ * @author HISATO
+ *
+ */
+@WebServlet("/list")
 public class ListServlet extends HttpServlet {
 
 	/**

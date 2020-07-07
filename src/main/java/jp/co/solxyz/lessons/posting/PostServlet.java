@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +14,14 @@ import javax.servlet.http.Part;
 import jp.co.solxyz.lessons.posting.business.PostService;
 import jp.co.solxyz.lessons.posting.entity.PostEntity;
 
-@MultipartConfig(location = "/tmp", maxFileSize = 1048476)
+/**
+ * 登録のサーブレット
+ * @author HISATO
+ *
+ */
+@WebServlet("/post")
+//MultipartConfigを設定すると、一時的にアップロードする場所を指定できる
+@MultipartConfig(location = "C:\\tmp", maxFileSize = 1048476)
 public class PostServlet extends HttpServlet {
 
 	private static final String PATH = "/WEB-INF/jsp/post.jsp";
@@ -37,8 +45,9 @@ public class PostServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		// var item = new ServletFileUpload
+		req.setCharacterEncoding("UTF-8");
 
+		// ファイルの送信にはMultipartという手法を利用して送信する必要がある。
 		var part = req.getPart("photo");
 		var photoBytes = part.getInputStream().readAllBytes();
 		var filename = getNameBy(part).orElse("empty name");
@@ -64,20 +73,6 @@ public class PostServlet extends HttpServlet {
 	 * @return
 	 */
 	private Optional<String> getNameBy(Part part) {
-
-		String name = null;
-
 		return Optional.of(part.getSubmittedFileName());
-
-//		for(String disp: part.getHeader("Content-Disposition").split(";")) {
-//			if(disp.trim().startsWith("name")) {
-//				name = disp.substring(disp.indexOf("=") + 1).replace("\"", "")
-//						.trim()
-//						.substring(name.lastIndexOf("\\"));
-//
-//			}
-//		}
-//
-//		return Optional.of(name);
 	}
 }

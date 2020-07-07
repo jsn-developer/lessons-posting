@@ -1,7 +1,6 @@
 package jp.co.solxyz.lessons.posting.dao;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.List;
@@ -10,9 +9,13 @@ import java.util.Optional;
 import jp.co.solxyz.lessons.posting.entity.ImageEntity;
 import jp.co.solxyz.lessons.posting.entity.PostEntity;
 
-public class PostDataDao {
+/**
+ * 投稿内容のDAO
+ * @author HISATO
+ *
+ */
+public class PostDataDao extends AbstractDao{
 
-	private static final String CONNECTION_STRING = "jdbc:mysql://db/posting?user=user&password=user";
 
 	private static final String INSERT_QUERY = "insert into post (title, content, photo, mime, tags) values(?, ?, ?, ?, ?)";
 
@@ -21,7 +24,7 @@ public class PostDataDao {
 	 * @throws ClassNotFoundException
 	 */
 	public PostDataDao() throws ClassNotFoundException {
-		Class.forName("com.mysql.cj.jdbc.Driver");
+		//Class.forName("com.mysql.jdbc.Driver");
 	}
 
 	/**
@@ -33,7 +36,8 @@ public class PostDataDao {
 
 		List<PostEntity> list = new ArrayList<>();
 
-		try (Connection conn = DriverManager.getConnection(CONNECTION_STRING)) {
+
+		try (Connection conn = getConnection()) {
 
 			var st = conn.createStatement();
 
@@ -59,10 +63,10 @@ public class PostDataDao {
 
 	public Optional<ImageEntity> getImage(String id) {
 
-		try (Connection conn = DriverManager.getConnection(CONNECTION_STRING)) {
+		try (Connection conn = getConnection()) {
 
 			var st = conn.createStatement();
-			
+
 			var result = st.executeQuery("select photo, mime from post where id = " + id);
 
 			if(result.next()) {
@@ -87,7 +91,7 @@ public class PostDataDao {
 	 */
 	public int insert(PostEntity entity) throws Exception {
 
-		try (Connection conn = DriverManager.getConnection(CONNECTION_STRING)) {
+		try (Connection conn = getConnection()) {
 
 			conn.setAutoCommit(false);
 

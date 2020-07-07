@@ -1,5 +1,7 @@
 package jp.co.solxyz.lessons.posting.business;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -9,7 +11,12 @@ public class PostServiceTest {
 
 	@Before
 	public void setUp() {
-		this.target = new PostService();
+		try {
+			this.target = new PostService();
+		} catch (Exception e) {
+			e.printStackTrace();
+			fail();
+		}
 	}
 
 	@Test
