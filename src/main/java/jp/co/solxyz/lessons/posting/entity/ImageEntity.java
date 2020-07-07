@@ -5,12 +5,16 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 画像
+ * @author HISATO
+ *
+ */
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class ImageEntity {
-
 
     private int id;
 

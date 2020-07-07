@@ -1,3 +1,4 @@
+<%@ page pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -41,7 +42,7 @@
     </form>
 <script>
 
-$(() => {
+$(function(){
     $("#photo").on("change", function(e) {
 
         e.stopPropagation();

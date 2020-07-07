@@ -5,6 +5,11 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * 投稿
+ * @author HISATO
+ *
+ */
 @Data
 @Builder
 @NoArgsConstructor
