@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author HISATO
  *
  */
-@WebServlet("/")
+@WebServlet("/index")
 public class IndexServlet extends HttpServlet{
 
 	@Override
