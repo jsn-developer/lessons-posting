@@ -2,6 +2,8 @@ package jp.co.solxyz.lessons.posting.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -39,9 +41,9 @@ public class PostDataDao extends AbstractDao{
 
 		try (Connection conn = getConnection()) {
 
-			var st = conn.createStatement();
+			Statement st = conn.createStatement();
 
-			var result = st.executeQuery("select * from post");
+			ResultSet result = st.executeQuery("select * from post");
 
 			while (result.next()) {
 
@@ -66,14 +68,14 @@ public class PostDataDao extends AbstractDao{
 
 		try (Connection conn = getConnection()) {
 
-			var st = conn.createStatement();
+			Statement st = conn.createStatement();
 
-			var result = st.executeQuery("select photo, mime from post where id = " + id);
+			ResultSet result = st.executeQuery("select photo, mime from post where id = " + id);
 
 			if(result.next()) {
 				return Optional.of(
-						new ImageEntity(0, 
-								result.getBytes("photo"), 
+						new ImageEntity(0,
+								result.getBytes("photo"),
 								null));
 			}
 
