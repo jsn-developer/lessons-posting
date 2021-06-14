@@ -48,13 +48,16 @@ public class PostServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 
 		// ファイルの送信にはMultipartという手法を利用して送信する必要がある。
-		var part = req.getPart("photo");
-		var photoBytes = part.getInputStream().readAllBytes();
-		var filename = getNameBy(part).orElse("empty name");
+		Part part = req.getPart("photo");
+		byte[] photoBytes = part.getInputStream().readAllBytes();
+		String filename = getNameBy(part).orElse("empty name");
 
-		var content = req.getParameter("content");
+		String content = req.getParameter("content");
 
-		PostEntity entity = PostEntity.builder().title(filename).content(content).photo(photoBytes).build();
+		PostEntity entity = new PostEntity();
+		entity.setTitle(filename);
+		entity.setContent(content);
+		entity.setPhoto(photoBytes);
 
 		try {
 			int result = this.postService.post(entity);

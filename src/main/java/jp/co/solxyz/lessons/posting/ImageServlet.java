@@ -1,6 +1,7 @@
 package jp.co.solxyz.lessons.posting;
 
 import java.io.IOException;
+import java.util.Optional;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -37,7 +38,7 @@ public class ImageServlet extends HttpServlet{
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
     	// 画像の取得を行う
-        var image = postService.getImage(req.getParameter("id")).orElseGet(() -> {
+        ImageEntity image = postService.getImage(req.getParameter("id")).orElseGet(() -> {
             return new ImageEntity();
         });
 

@@ -45,13 +45,14 @@ public class PostDataDao extends AbstractDao{
 
 			while (result.next()) {
 
-				list.add(PostEntity.builder()
-						.id(result.getInt("id"))
-						.title(result.getString("title"))
-						.content(result.getString("content"))
-						.tags(result.getString("tags"))
-						.photo(result.getBytes("photo"))
-						.build());
+				list.add(new PostEntity(
+						result.getInt("id"),
+						result.getString("title"),
+						result.getString("content"),
+						result.getBytes("photo"),
+						null,
+						result.getString("tags")
+						));
 			}
 
 		} catch (Exception e) {
@@ -71,9 +72,9 @@ public class PostDataDao extends AbstractDao{
 
 			if(result.next()) {
 				return Optional.of(
-						ImageEntity.builder()
-						.image(result.getBytes("photo"))
-						.build());
+						new ImageEntity(0, 
+								result.getBytes("photo"), 
+								null));
 			}
 
 		} catch (Exception e) {
